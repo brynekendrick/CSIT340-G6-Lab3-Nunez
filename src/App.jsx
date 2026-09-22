@@ -4,22 +4,22 @@ const Header = (props) => {
 
 const Part = (props) => {
   return (
-    <p>{props.part} - {props.exercises} units</p>
+    <p>{props.part.name} - {props.part.exercises} units</p>
   )
 }
 
 const Content = (props) => {
   return (
     <div>
-      <Part part={props.part1} exercises={props.exercises1} />
-      <Part part={props.part2} exercises={props.exercises2} />
-      <Part part={props.part3} exercises={props.exercises3} />
+      <Part part={props.part1} />
+      <Part part={props.part2} />
+      <Part part={props.part3} />
     </div>
   )
 }
 
 const Total = (props) => {
-  return <p>Total Units: {props.total}</p>
+  return <p><strong>Total Units:</strong> {props.total}</p>
 }
 
 const Footer = (props) => {
@@ -32,15 +32,22 @@ const Footer = (props) => {
 
 const App = () => {
   const course = 'BS Information Technology'
-  const part1 = 'CSIT340 - Web Development'
-  const exercises1 = 3
-  const part2 = 'CSIT122 - Data Structures and Algorithms'
-  const exercises2 = 3
-  const part3 = 'CSIT385 - Information Security and Assurance'
-  const exercises3 = 3
+
+  const part1 = {
+    name: 'CSIT340 - Web Development',
+    exercises: 3
+  }
+  const part2 = {
+    name: 'CSIT301 - Data Structures and Algorithms',
+    exercises: 3
+  }
+  const part3 = {
+    name: 'CSIT320 - Database Systems',
+    exercises: 3
+  }
 
   const student = {
-    fullName: 'Bryne Kendrick Nunez', 
+    fullName: 'Bryne Kendrick Nunez',
     courseCode: 'CSIT340',
     section: 'G6'
   }
@@ -48,12 +55,8 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content
-        part1={part1} exercises1={exercises1}
-        part2={part2} exercises2={exercises2}
-        part3={part3} exercises3={exercises3}
-      />
-      <Total total={exercises1 + exercises2 + exercises3} />
+      <Content part1={part1} part2={part2} part3={part3} />
+      <Total total={part1.exercises + part2.exercises + part3.exercises} />
       <Footer
         fullName={student.fullName}
         courseCode={student.courseCode}
